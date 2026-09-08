@@ -37,6 +37,10 @@ SENTENCE_END = ")'\""
 PROOF_DISCOURAGED = "(Proof modification is discouraged.)"
 USAGE_DISCOURAGED = "(New usage is discouraged.)"
 
+# A comment is "$(" to the first "$)".  Both are whitespace-delimited keywords
+# (mmpars.c readRawSource: "A keyword must be preceded by white space"), so a
+# bare "$)" can't occur inside a comment, and the language has no "$$" escape
+# for a literal "$" -- so the first "$)" is always the true terminator.
 COMMENT = re.compile(r"\$\(.*?\$\)", re.S)
 # A file inclusion may sit between a comment and the statement it describes.
 # The metamath executable resolves inclusions before parsing, so step over
